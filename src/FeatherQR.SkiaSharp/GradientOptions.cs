@@ -131,19 +131,6 @@ public sealed record class GradientOptions
             return hash;
         }
     }
-
-    /// <summary>
-    /// The record printer, written by hand: the generated one would print a <see cref="ReadOnlySpan{T}"/> member as its type name, and would have to compile against a ref struct on every target framework.
-    /// </summary>
-    private bool PrintMembers(System.Text.StringBuilder builder)
-    {
-        // Append(Direction) binds to Append(object) and boxes the enum; no numeric overload
-        // accepts one, and ToString() is what the generated printer would have called anyway.
-        builder.Append(_colors.Length).Append(" colors, Direction = ").Append(Direction.ToString());
-        if (_colorPositions.Length != 0)
-            builder.Append(", ").Append(_colorPositions.Length).Append(" stops");
-        return true;
-    }
 }
 
 /// <summary>
